@@ -12,11 +12,14 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # separated modules for conveniences
       ./modules/desktop.nix
       ./modules/networking.nix
       ./modules/services.nix
       ./modules/system.nix
       ./modules/user.nix
+      # binary caches
+      ./cachix.nix
       # Include musnix kernel configurations.
       <musnix>
     ];

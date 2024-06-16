@@ -58,7 +58,7 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-  
+
   # would be to create a swapfile:
   swapDevices = [{
     device = "/swapfile";
@@ -90,11 +90,11 @@
 
 
   # List of Overlays, containing configuration for installing neovim's nightly packages
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-    }))
-  ];
+  #nixpkgs.overlays = [
+  #  (import (builtins.fetchTarball {
+  #    url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+  #  }))
+  #];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -262,7 +262,7 @@
     fd # TUI: simple, fast and user-friendly alternative to find
     bat # TUI: cat clone with wings.
     delta # TUI: diff, grep, and blame output for git
-    eza # TUI: modern, maintained replacement for ls 
+    eza # TUI: modern, maintained replacement for ls
     unixtools.xxd # hex-editor
     wl-clipboard # cli clipboard manager
     tmux # terminal multiplexer
@@ -342,8 +342,18 @@
     gnuk # GNU privacy guard
     ###########################
 
+    #### RECORDING AND STREAMING ####
+    obs-studio # stream/screen-capture
+    obs-studio-plugins.input-overlay # keystrokes
+    obs-studio-plugins.obs-backgroundremoval
+    obs-studio-plugins.obs-shaderfilter
+    obs-studio-plugins.obs-move-transition
+    obs-studio-plugins.obs-pipewire-audio-capture
+    obs-studio-plugins.advanced-scene-switcher
+    kdenlive # video seq
+    shotcut # another video seq
 
-    #### general ap###########################fice-fresh # office
+    ########### GENERAL APPLICATIONS ##############
     #kicad # 3d electronics pcb suite
     #brlcad # 3d solid works suite
     libreoffice-fresh # this is MSOffice
@@ -351,8 +361,6 @@
     sca2d # programmer's 3d solid works
     kodi-wayland # media center
     blender # 3D art/ video seq
-    kdenlive # video seq
-    shotcut # another video seq
     handbrake # converting video files
     audacity # sound editor
     gimp # photoshop challenger
@@ -360,7 +368,6 @@
     inkscape-with-extensions # vector graphics editor
     imagemagickBig # lightest photoshop
     darktable # lightroom challenger
-    obs-studio # stream/screen-capture
     telegram-desktop # telegram chat app
     discord # discord server
     riseup-vpn # free vpn
