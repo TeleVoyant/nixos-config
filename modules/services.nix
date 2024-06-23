@@ -25,12 +25,12 @@
   };
 
   # Enable aria2 daemon and ports
-  #services.aria2 = {
-  #  enable = true; #Enable aria2 daemon
-  #  openPorts = true; #Open firewall for ports
-  #  rpcSecretFile = "/run/secrets/aria2-rpc-token.txt";
-  #  extraArguments = "--rpc-listen-all --remote-time=true";
-  #};
+  services.aria2 = {
+    enable = true; #Enable aria2 daemon
+    openPorts = true; #Open firewall for ports
+    rpcSecretFile = "/run/secrets/aria2-rpc-token.txt";
+    extraArguments = "--rpc-listen-all --remote-time=true";
+  };
 
   # Enable rsync daemon and activations
   services.rsyncd = {
@@ -54,11 +54,11 @@
 
   # enable virtualbox and its extension packs
   # Virtualbox configuration
-  virtualisation.virtualbox.host = {
-    enable = true;
-    enableExtensionPack = true;
-    #enableWebService = true;
-  };
+  #virtualisation.virtualbox.host = {
+  #  enable = true;
+  #  enableExtensionPack = true;
+  #  #enableWebService = true;
+  #};
 
 
   # --------------------------------------

@@ -42,7 +42,7 @@
 
   # Enable sound with pipewire.
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = false; # we will use pipewire instead
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -85,6 +85,20 @@
       #"qtwebkit-5.212.0-alpha4"
       #"electron-25.9.0"
     ];
+
+    # neovim nightly
+    packageOverrides = pkgs: let
+        pkgs' = import <nixos-unstable> {
+            inherit (pkgs) system;
+            overlays = [
+                (import (builtins.fetchTarball {
+                         url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+                         }))
+            ];
+        };
+    in {
+        inherit (pkgs') neovim;
+    };
   };
   #################################
 
@@ -158,6 +172,7 @@
     luajit
     luajitPackages.luarocks # JIT lua and JIT luarocks package manager
     flutter # flutter application development
+    _7zz # 7zip
     zip
     unzip # zip and unzip (not same as gzip!)
     rar # utility for RAR archives
@@ -273,7 +288,7 @@
     wxhexeditor # advanced HEX editor
     insomnia # API DevTest
     libvirt # toolkit to interact with the virtualization
-    virtualbox # GUI virtualizer
+    #virtualbox # GUI virtualizer
     qemu_full # machine emulator and CLI virtualizer
     #ciscoPacketTracer8
 
@@ -340,16 +355,22 @@
     libgcrypt
     pinentry # for GUI pin entry
     gnuk # GNU privacy guard
+    # steganography
+    steghide # hide data inside picture or audio file
+    stegseek # seek hidden data inside picture or audio file
     ###########################
 
     #### RECORDING AND STREAMING ####
     obs-studio # stream/screen-capture
     obs-studio-plugins.input-overlay # keystrokes
+    obs-studio-plugins.obs-gradient-source
     obs-studio-plugins.obs-backgroundremoval
     obs-studio-plugins.obs-shaderfilter
     obs-studio-plugins.obs-move-transition
-    obs-studio-plugins.obs-pipewire-audio-capture
-    obs-studio-plugins.advanced-scene-switcher
+    obs-studio-plugins.obs-composite-blur
+    obs-studio-plugins.obs-3d-effect
+    #davinci-resolve # the G.O.A.T of video editors out here
+    screenkey # keystroke renderer
     kdenlive # video seq
     shotcut # another video seq
 
