@@ -28,7 +28,7 @@
   services.aria2 = {
     enable = true; #Enable aria2 daemon
     openPorts = true; #Open firewall for ports
-    rpcSecretFile = "/run/secrets/aria2-rpc-token.txt";
+    rpcSecretFile = "/home/niel/Downloads/Aria2/secrets/aria2-rpc-token.txt";
     extraArguments = "--rpc-listen-all --remote-time=true";
   };
 
@@ -75,7 +75,7 @@
     enableExtraSocket = true;
     pinentryPackage = pkgs.pinentry-gnome3;
   };
-  
+
   # favourite web browser
   programs.firefox.enable = true;
 

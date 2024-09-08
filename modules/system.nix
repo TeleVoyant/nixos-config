@@ -154,6 +154,7 @@
     rustc
     rustup # for rust
     go # for gophers
+    go-migrate # for go DB migrations
     zig # for zig
     julia # performance-oriented dynamical language
     alire # lady ada
@@ -167,8 +168,8 @@
     elixir # erlang and elixir tools
     php83
     php83Packages.composer # php 8.3
-    python311Full
-    python311Packages.pip
+    python312Full
+    python312Packages.pip
     luajit
     luajitPackages.luarocks # JIT lua and JIT luarocks package manager
     flutter # flutter application development
@@ -233,7 +234,7 @@
 
     ###  DAWS ###
     bitwig-studio # not open-source DAW but amaizing
-    #renoise # not open-source, daw with track approach
+    renoise # not open-source, daw with track approach
     reaper # not open-source, way cheaper
     ardour # open-source daw
     lmms # ardour with fl-studio workflow
@@ -292,74 +293,6 @@
     qemu_full # machine emulator and CLI virtualizer
     #ciscoPacketTracer8
 
-
-    ###### hacking and forensics ######
-    # forensic and recovery tools
-    sleuthkit # for forensics of disks
-    foremost # recover files based on contents
-    scalpel # recover files based on headers/footers
-    # Network scanning tools
-    nmap # network scanner tool
-    angryipscanner # fast and friendly network scanner
-    fping # ICMP packets to multiple hosts
-    netcat-gnu # remote command execution
-    # Vulnerability scanning tools
-    nikto # server scanner
-    # Password cracking tools
-    john
-    hashcat # john-the-ripper and other password crackers
-    aircrack-ng # wireless tools
-    thc-hydra
-    hydra-cli # parallelized network login cracker tools
-    medusa # another parallel login cracker tool
-    sherlock # social media hunt
-    # Explpoitation tools
-    metasploit # penetration testing framework
-    burpsuite # security testing of web applications
-    powersploit # powershell exploitation
-    sqlmap # SQL injection
-    armitage # GUI for metasploit
-    zap # penetration testing
-    # Packet sniffing
-    wireshark
-    termshark # wifi penetration
-    tcpdump # network sniffer
-    ettercap
-    bettercap # MITM
-    snort # IDS and IPS
-    ngrep # packets grep-ing
-    networkminer # network forensics analysis
-    hping # packets assembler/analyzer
-    # wireless hacking tools
-    wifite2
-    reaverwps-t6x # attack against WPS
-    kismet # wireless network sniffer
-    bully # retrieve WPA passphrase from WPS
-    cowpatty # offline dictionary attack against WPA
-    # social engineering tools
-    social-engineer-toolkit
-    maltego # intelligence gathering
-    theharvester # gather Emails, names from different public sources
-    # reverse engineering
-    ghidra # software reverse engineering by NSA Research directorate
-    apktool # reverse engineering android apk files
-    cutter
-    rizin # open source reverse engineering powered by rizin
-    radare2 # unix-like reverse engineering
-    # password and encryptions
-    diceware # generate random passphrase
-    gnupg # gpg
-    gpg-tui # gpg terminal UI
-    gpgme # something something manage keys
-    libgpg-error
-    libgcrypt
-    pinentry # for GUI pin entry
-    gnuk # GNU privacy guard
-    # steganography
-    steghide # hide data inside picture or audio file
-    stegseek # seek hidden data inside picture or audio file
-    ###########################
-
     #### RECORDING AND STREAMING ####
     obs-studio # stream/screen-capture
     obs-studio-plugins.input-overlay # keystrokes
@@ -408,6 +341,8 @@
     obsidian # My notes
     #wineWowPackages.waylandFull
     #timeshift # backup home files and configurations
+    vscode # forced by collaborative purposes
+    httrack # website coppier
 
     # Nvidia specific
     #cudaPackages.cudatoolkit
