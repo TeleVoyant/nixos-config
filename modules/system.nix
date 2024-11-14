@@ -147,13 +147,10 @@
     bisoncpp
     flexcpp
     re-flex # parser generator
-    llvmPackages_17.libclang
-    llvmPackages_17.clang-manpages # corporate c/c++
-    llvmPackages_17.libllvm
-    llvmPackages_17.llvm-manpages # corporate c/c++
     rustc
     rustup # for rust
     go # for gophers
+    gotools # additional tools for go development
     go-migrate # for go DB migrations
     zig # for zig
     julia # performance-oriented dynamical language
@@ -163,6 +160,7 @@
     gradle
     gradle-completion # build system
     nodejs_20 # node and npm
+    yarn # fast & secure dependency management
     erlang
     rebar3
     elixir # erlang and elixir tools
@@ -170,8 +168,10 @@
     php83Packages.composer # php 8.3
     python312Full
     python312Packages.pip
-    luajit
-    luajitPackages.luarocks # JIT lua and JIT luarocks package manager
+    luajit # lua with Just in time compiler
+    luajitPackages.luarocks # JIT luarocks package manager
+    luajitPackages.ldoc # JIT lua documentation generator
+    doxygen_gui # source code documentation generator
     flutter # flutter application development
     _7zz # 7zip
     zip
@@ -186,6 +186,8 @@
     dpkg # debian package manager
     jq # cmd json processor
     openssl # cryptographic SSL and TLS library
+    btrfs-progs # for btrfs file systems
+    tree # dir tree print-out
 
 
     ########################## audio and DSPs ###########################
@@ -206,7 +208,7 @@
     libebur128 # auto gain
     zita-convolver # custom reverbs
     soundtouch # pitch, tempo
-    rnnoise
+    rnnoise # ML noise reduction
     rnnoise-plugin # ML noise reduction
     noise-repellent # primitive noise reduction
     surge-XT # best opensource synth in the world
@@ -277,6 +279,7 @@
     fzf-git-sh # TUI: key bindings for Git objects, powered by fzf.
     fd # TUI: simple, fast and user-friendly alternative to find
     bat # TUI: cat clone with wings.
+    zoxide # cd that learns your habits
     delta # TUI: diff, grep, and blame output for git
     eza # TUI: modern, maintained replacement for ls
     unixtools.xxd # hex-editor
@@ -302,7 +305,7 @@
     obs-studio-plugins.obs-move-transition
     obs-studio-plugins.obs-composite-blur
     obs-studio-plugins.obs-3d-effect
-    #davinci-resolve # the G.O.A.T of video editors out here
+    davinci-resolve # the G.O.A.T of video editors out here
     screenkey # keystroke renderer
     kdenlive # video seq
     shotcut # another video seq
@@ -325,14 +328,15 @@
     telegram-desktop # telegram chat app
     discord # discord server
     riseup-vpn # free vpn
+    protonvpn-gui # paid vpn
     #goldendict # feature-rich dictionary
     goldendict-ng # the Next Generation GoldenDict.
     dict # terminal dictionary
     mpv # general-purpose media player
     rhythmbox # some music
-    vlc # that one traffic cone...
+    vlc # that one traffic cone on every computer
     lm_sensors # sensor recapture
-    firefox # favourinte fox
+    firefox # favourite fox
     chromium # not so favourite fox
     calibre # e-book software
     bibletime # bible library
@@ -340,7 +344,6 @@
     masterpdfeditor # edit pdf on the go
     obsidian # My notes
     #wineWowPackages.waylandFull
-    #timeshift # backup home files and configurations
     vscode # forced by collaborative purposes
     httrack # website coppier
 

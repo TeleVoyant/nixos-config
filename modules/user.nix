@@ -1,7 +1,4 @@
-{ config, pkgs, ... }:
-
-{
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+{ config, pkgs, ... }: { # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.niel = {
     isNormalUser = true;
     description = "Daniel Tumaini";
@@ -71,9 +68,11 @@
       ### reverse engineering
       ghidra # software reverse engineering by NSA Research directorate
       apktool # reverse engineering android apk files
+      frida-tools # Dynamic instrumentation toolkit for reverse-engineers,
       cutter
       rizin # open source reverse engineering powered by rizin
       radare2 # unix-like reverse engineering
+      jadx # Dex to Java decompiler
       ### password and encryptions
       diceware # generate random passphrase
       gnupg # gpg
