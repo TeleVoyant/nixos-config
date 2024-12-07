@@ -85,6 +85,8 @@
       ### steganography
       steghide # hide data inside picture or audio file
       stegseek # seek hidden data inside picture or audio file
+      ### metadata
+      exiftool
       ###########################
 
     ];

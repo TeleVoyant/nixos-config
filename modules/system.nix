@@ -126,6 +126,9 @@
     gnomeExtensions.easyeffects-preset-selector
     gnomeExtensions.docker
     gnomeExtensions.top-bar-organizer
+    gnomeExtensions.transparent-topbar
+    gnomeExtensions.move-clock
+    gnomeExtensions.bluetooth-battery-meter
     ### gnome apps
     gnome.gnome-bluetooth # bluetooth manager
     gnome.gnome-tweaks # customizing gnome
@@ -136,6 +139,7 @@
 
     # bin utils
     exfat # for exfat manipulation
+    parted # partition editor
     gcc
     libgcc
     gdb
@@ -160,6 +164,7 @@
     gradle
     gradle-completion # build system
     nodejs_20 # node and npm
+    deno # secure runtime for javascript and typescript
     yarn # fast & secure dependency management
     erlang
     rebar3
@@ -188,6 +193,7 @@
     openssl # cryptographic SSL and TLS library
     btrfs-progs # for btrfs file systems
     tree # dir tree print-out
+    ikos # static c/c++ analyzer by NASA
 
 
     ########################## audio and DSPs ###########################
@@ -287,6 +293,7 @@
     tmux # terminal multiplexer
     nerdfonts # for programming
     git # version control
+    lazygit # terminal UI for git commands
     gh # git user manager
     androidStudioPackages.canary
     wxhexeditor # advanced HEX editor
