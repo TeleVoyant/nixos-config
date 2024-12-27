@@ -86,29 +86,37 @@
       #"electron-25.9.0"
     ];
 
-    # neovim nightly
-    packageOverrides = pkgs: let
-        pkgs' = import <nixos-unstable> {
-            inherit (pkgs) system;
-            overlays = [
-                (import (builtins.fetchTarball {
-                         url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-                         }))
-            ];
-        };
-    in {
-        inherit (pkgs') neovim;
-    };
-  };
+
   #################################
-
-
-  # List of Overlays, containing configuration for installing neovim's nightly packages
-  #nixpkgs.overlays = [
-  #  (import (builtins.fetchTarball {
-  #    url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-  #  }))
-  #];
+  ##### NIX PACKAGES OVERLAYS #####
+  #################################
+  # Bitwig's Overlay, for fixed version of bitwig
+  nixpkgs.overlays = [
+    (final: prev: {
+      bitwig-studio = final.callPackage ./packages/bitwig-studio/bitwig-studio.nix {};
+    })
+  ];
+  # # neovim nightly using unstable repository (disabled for now)
+  # packageOverrides = pkgs: let
+  #     pkgs' = import <nixos-unstable> {
+  #         inherit (pkgs) system;
+  #         overlays = [
+  #             (import (builtins.fetchTarball {
+  #                      url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+  #                      }))
+  #         ];
+  #     };
+  # in {
+  #     inherit (pkgs') neovim;
+  # };
+  # };
+  # Neovim's Overlay, for installing neovim nightly (disabled for now)
+  nixpkgs.overlays = [
+   (import (builtins.fetchTarball {
+     url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+   }))
+  ];
+  #################################
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -189,11 +197,12 @@
     neofetch # system info script
     pkg-config # packages find info about other packages
     dpkg # debian package manager
-    jq # cmd json processor
     openssl # cryptographic SSL and TLS library
     btrfs-progs # for btrfs file systems
     tree # dir tree print-out
     ikos # static c/c++ analyzer by NASA
+    policycoreutils # security policy
+    audit # for system log analysis
 
 
     ########################## audio and DSPs ###########################
@@ -241,8 +250,8 @@
 
 
     ###  DAWS ###
-    bitwig-studio # not open-source DAW but amaizing
-    renoise # not open-source, daw with track approach
+    bitwig-studio # not open-source DAW but amaizing (fetching fixed version from internet arch)
+    # renoise # not open-source, daw with track approach
     reaper # not open-source, way cheaper
     ardour # open-source daw
     lmms # ardour with fl-studio workflow
@@ -279,6 +288,11 @@
     # dev env
     #neovim-nightly # TUI: 1st favourite editor (nightly builds)
     neovim # TUI: 1st favourite editor
+    yazi # Blazing fast terminal file manager
+    p7zip # 7z on unix-like systems.
+    ffmpeg # complete, cross-platform solution to record, convert and stream audio and video
+    poppler # PDF rendering library
+    jq # cmd json processor
     zed-editor # High-performance, multiplayer code editor
     geany # small, lightweight IDE
     fzf # TUI: fuzzy finder written in Go
