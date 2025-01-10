@@ -17,7 +17,7 @@
   time.timeZone = "Africa/Dar_es_Salaam";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   # Configure console keymap
   #console.keyMap = "uk";
@@ -41,29 +41,15 @@
   system.copySystemConfiguration = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false; # we will use pipewire instead
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    audio.enable = true;
-    wireplumber.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
+  # pipewire service is defined in services.nix
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  # would be to create a swapfile:
-  swapDevices = [{
-    device = "/swapfile";
-    size = 32 * 1024; # 32GB
-  }];
+  # # would be to create a swapfile (no need for now, swap partition exists):
+  # swapDevices = [{
+  #   device = "/swapfile";
+  #   size = 32 * 1024; # 32GB
+  # }];
 
 
   # nix packages extra configurations
@@ -72,7 +58,7 @@
     allowUnfree = true;
 
     #Allow Old unmainttained
-    #allowBroken = true;
+    allowBroken = true;
 
     # Accept Nvidia license
     nvidia.acceptLicense = true;
@@ -82,19 +68,32 @@
 
     #permitted insecure packages
     permittedInsecurePackages = [
+      "dotnet-sdk-6.0.428"
+      "dotnet-runtime-6.0.36"
       #"qtwebkit-5.212.0-alpha4"
       #"electron-25.9.0"
     ];
+
+    };
 
 
   #################################
   ##### NIX PACKAGES OVERLAYS #####
   #################################
-  # Bitwig's Overlay, for fixed version of bitwig
+
   nixpkgs.overlays = [
+    # Bitwig's Overlay, for fixed version of bitwig
     (final: prev: {
-      bitwig-studio = final.callPackage ./packages/bitwig-studio/bitwig-studio.nix {};
+      bitwig-studio = final.callPackage ./../packages/bitwig-studio/bitwig-studio.nix {};
     })
+    # Davinci's Overlay, for accomodating custom details
+    (final: prev: {
+      davinci-resolve = final.callPackage ./../packages/davinci-resolve/davinci-resolve.nix {};
+    })
+    # Neovim's Overlay, for installing neovim nightly
+    (import (builtins.fetchTarball {
+     url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+   }))
   ];
   # # neovim nightly using unstable repository (disabled for now)
   # packageOverrides = pkgs: let
@@ -110,39 +109,32 @@
   #     inherit (pkgs') neovim;
   # };
   # };
-  # Neovim's Overlay, for installing neovim nightly (disabled for now)
-  nixpkgs.overlays = [
-   (import (builtins.fetchTarball {
-     url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-   }))
-  ];
   #################################
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
 
     # nixos core packages
     nixos-option # extra options
-    cachix # cache
 
     ### gnome extensions
+    gnomeExtensions.vitals
     gnomeExtensions.mpris-label
     gnomeExtensions.clipboard-indicator
+    gnomeExtensions.clipboard-history
     gnomeExtensions.easyeffects-preset-selector
     gnomeExtensions.docker
     gnomeExtensions.top-bar-organizer
-    gnomeExtensions.transparent-topbar
+    gnomeExtensions.transparent-top-bar
     gnomeExtensions.move-clock
     gnomeExtensions.bluetooth-battery-meter
     ### gnome apps
-    gnome.gnome-bluetooth # bluetooth manager
-    gnome.gnome-tweaks # customizing gnome
-    gnome.dconf-editor # further customizations
+    gnome-bluetooth # bluetooth manager
+    gnome-tweaks # customizing gnome
+    dconf-editor # further customizations
     #gnome.gnome-terminal		# giving 'console' a chance
-    gnome.ghex # light HEX editor
+    ghex # light HEX editor
 
 
     # bin utils
@@ -171,14 +163,14 @@
     maven # java utilities for libreoffice base, i promise!
     gradle
     gradle-completion # build system
-    nodejs_20 # node and npm
+    nodejs_23 # node and npm
     deno # secure runtime for javascript and typescript
     yarn # fast & secure dependency management
     erlang
     rebar3
     elixir # erlang and elixir tools
-    php83
-    php83Packages.composer # php 8.3
+    php84
+    php84Packages.composer # php 8.3
     python312Full
     python312Packages.pip
     luajit # lua with Just in time compiler
@@ -203,6 +195,7 @@
     ikos # static c/c++ analyzer by NASA
     policycoreutils # security policy
     audit # for system log analysis
+    pdftk # Command-line tool for working with PDFs
 
 
     ########################## audio and DSPs ###########################
@@ -227,6 +220,8 @@
     rnnoise-plugin # ML noise reduction
     noise-repellent # primitive noise reduction
     surge-XT # best opensource synth in the world
+    surge # latest surge-XT
+    # tunefish # another synth
     vital # another synth
     odin2 # another synth
     dexed # another FM
@@ -235,23 +230,27 @@
     geonkick # sequencer
     zynaddsubfx # realtime MIDI processor
     bespokesynth # modular synth
-    oxefmsynth # another FM synth
-    tunefish # another synth
+    oxefmsynth # another FM sytunefish # another synth
     sorcer # wavetable synth
     cardinal # inspired by VCV rack
-    CHOWTapeModel
-    ChowCentaur
-    ChowPhaser
-    ChowKick # CHOW utilities
+    chow-tape-model # Physical modelling signal processing for analog tape recording
+    chow-centaur # Digital emulation of the Klon Centaur guitar pedal
+    chow-phaser # Phaser effect based loosely on the Schulte
+    chow-kick # CHOW utilities
     aether-lv2 # algo reverb based on cloudseed
-    distrho # collection of small plugins
+    distrho-ports # collection of small plugins
     dragonfly-reverb # name explains it
     swh_lv2 # we're about to find out
+    drumgizmo # drum plugin
+    gxplugins-lv2 # lv2 plugins from the guitarix project
+    talentedhack # LV2 port of Autotalent
+    autotalent # pitch correction plugin
+    eq10q # EQ plugins and more, with 64 bit processing
 
 
     ###  DAWS ###
     bitwig-studio # not open-source DAW but amaizing (fetching fixed version from internet arch)
-    # renoise # not open-source, daw with track approach
+    renoise # not open-source, daw with track approach
     reaper # not open-source, way cheaper
     ardour # open-source daw
     lmms # ardour with fl-studio workflow
@@ -276,18 +275,20 @@
     google-fonts # for office use
     vistafonts # i want 'times new roman'
 
-    # download manager
+    # download managers
     curl # url crawler
     wget
     wget2 # successor to wget
-    aria # command-line download utility
+    aria2 # command-line download utility
     ariang # aria2 front-end
     yt-dlp # youtube video downloader
+    media-downloader # Qt/C++ GUI front end for yt-dlp, aria and others
+    clipgrab # Video downloader for YouTube and other sites
     deluge # torrents
 
     # dev env
-    #neovim-nightly # TUI: 1st favourite editor (nightly builds)
-    neovim # TUI: 1st favourite editor
+    neovim # TUI: 1st favourite editor (nightly builds)
+    #neovim # TUI: 1st favourite editor
     yazi # Blazing fast terminal file manager
     p7zip # 7z on unix-like systems.
     ffmpeg # complete, cross-platform solution to record, convert and stream audio and video
@@ -326,14 +327,14 @@
     obs-studio-plugins.obs-move-transition
     obs-studio-plugins.obs-composite-blur
     obs-studio-plugins.obs-3d-effect
-    davinci-resolve # the G.O.A.T of video editors out here
+    # davinci-resolve # the G.O.A.T of video editors out here
     screenkey # keystroke renderer
     kdenlive # video seq
     shotcut # another video seq
 
     ########### GENERAL APPLICATIONS ##############
     #kicad # 3d electronics pcb suite
-    #brlcad # 3d solid works suite
+    brlcad # 3d solid works suite
     libreoffice-fresh # this is MSOffice
     openscad # programmable 3d solid works
     sca2d # programmer's 3d solid works
@@ -357,7 +358,7 @@
     rhythmbox # some music
     vlc # that one traffic cone on every computer
     lm_sensors # sensor recapture
-    firefox # favourite fox
+    firefox-esr # favourite fox
     chromium # not so favourite fox
     calibre # e-book software
     bibletime # bible library
@@ -367,12 +368,14 @@
     #wineWowPackages.waylandFull
     vscode # forced by collaborative purposes
     httrack # website coppier
+    linux-wifi-hotspot # the name says it
+    warp-terminal # Rust-based terminal with AI integration
+    qtcreator # Cross-platform IDE for Qt developers
+    pdfarranger # Merge or split pdf documents and rotate, crop and rearrange their pages
 
     # Nvidia specific
     #cudaPackages.cudatoolkit
 
-  ];
+    ];
 
-
-}
-
+  }

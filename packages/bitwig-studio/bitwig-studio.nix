@@ -43,7 +43,7 @@ stdenv.mkDerivation rec {
   # The hash ensures the downloaded file matches exactly what's expected
   src = fetchurl {
     url = "https://ia801006.us.archive.org/zip_dir.php?path=/23/items/bitwig.-studio.v-5.2.0.-li-nux-flare.tar.zip";
-    hash = "sha256-inumRTuqk791GmdSs9VfIFhE3kOeGWsNaiAUrPrsYjY=";
+    hash = "sha256-NAJsdXuFsNW26K03KIXeaAx4KM0LlzKTNrFWyYY1UMQ=";
   };
 
   # tools needed during the build process

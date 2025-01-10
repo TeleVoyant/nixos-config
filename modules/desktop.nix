@@ -2,30 +2,6 @@
 
 {
   ###### NVIDIA RENDERING ######
-  # Enable OpenGL
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
-
-  # Extra crucial xserver options
-  services.xserver = {
-    # Enable the X11 windowing system
-    enable = true;
-
-    # Load video drivers (default and/or nvidia)
-    videoDrivers = [ "nvidia" ];
-
-    # Configure keymap in X11
-    xkb.layout = "gb";
-    #xkb.Variant = "intl";
-
-  };
-  
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
 
   # nvidia driver configurations
   hardware.nvidia = {
@@ -69,12 +45,6 @@
 	# amdgpuBusId = "PCI:54:0:0"; For AMD GPU
     };
   };
-  ###################
-
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
+  #########################
 }
 

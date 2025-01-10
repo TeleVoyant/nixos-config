@@ -4,10 +4,10 @@
     description = "Daniel Tumaini";
     extraGroups = [ "networkmanager" "wheel" "docker" "audio" "adbusers" "libvirtd" "vboxusers" "aria2" ];
 
-    nixpkgs.config = {
-        # Allow unfree packages
-        allowUnfree = true;
-    };
+    #nixpkgs.config = {
+    #    # Allow unfree packages
+    #    allowUnfree = true;
+    #};
 
     packages = with pkgs; [
       ### for proper neovim functioning ###
@@ -81,7 +81,7 @@
       libgpg-error
       libgcrypt
       pinentry # for GUI pin entry
-      gnuk # GNU privacy guard
+      #gnuk # GNU privacy guard
       ### steganography
       steghide # hide data inside picture or audio file
       stegseek # seek hidden data inside picture or audio file

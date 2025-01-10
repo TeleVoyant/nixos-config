@@ -5,7 +5,43 @@
   # --------------------------------------
   # List of services that are to be set up:
   # --------------------------------------
+  # Extra crucial xserver options
+  services.xserver = {
+    # Enable the X11 windowing system
+    enable = true;
+    
+    # Enable the GNOME Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
 
+    # Load video drivers (default and/or nvidia)
+    videoDrivers = [ "nvidia" ];
+
+    # Configure keymap in X11
+    xkb.layout = "gb";
+    #xkb.Variant = "";
+
+  };
+  
+  # pipewire service configuration:
+  services.pipewire = {
+    enable = true;
+    audio.enable = true;
+    wireplumber.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
+  
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.libinput.enable = true;
+  
   # Enable flathub
   services.flatpak.enable = true;
 
@@ -28,8 +64,7 @@
   services.aria2 = {
     enable = true; #Enable aria2 daemon
     openPorts = true; #Open firewall for ports
-    # rpcSecretFile = "/home/niel/Downloads/Aria2/secrets/aria2-rpc-token.txt";
-    extraArguments = "--rpc-listen-all --remote-time=true";
+    rpcSecretFile = "/home/niel/Downloads/Aria2/secrets/aria2-rpc-token.txt";
   };
 
   # Enable rsync daemon and activations
@@ -55,9 +90,9 @@
   # enable virtualbox and its extension packs
   # Virtualbox configuration
   #virtualisation.virtualbox.host = {
-  #  enable = true;
-  #  enableExtensionPack = true;
-  #  #enableWebService = true;
+  # enable = true;
+  # enableExtensionPack = true;
+  # #enableWebService = true;
   #};
 
 
