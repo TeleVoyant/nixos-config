@@ -23,6 +23,8 @@
       sleuthkit # for forensics of disks
       foremost # recover files based on contents
       scalpel # recover files based on headers/footers
+      testdisk-qt # recover contents on disks
+      autopsy # crimescene
       ### Network scanning tools
       nmap # network scanner tool
       angryipscanner # fast and friendly network scanner
@@ -38,13 +40,17 @@
       hydra-cli # parallelized network login cracker tools
       medusa # another parallel login cracker tool
       sherlock # social media hunt
-      ### Explpoitation tools
+      ### Exploitation tools
       metasploit # penetration testing framework
       burpsuite # security testing of web applications
       powersploit # powershell exploitation
       sqlmap # SQL injection
       armitage # GUI for metasploit
       zap # penetration testing
+      yersinia # DOS attacks
+      iptraf-ng
+      nexttrace
+      ntopng
       ### Packet sniffing
       wireshark
       termshark # wifi penetration

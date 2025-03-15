@@ -124,11 +124,14 @@
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.clipboard-history
     gnomeExtensions.easyeffects-preset-selector
-    gnomeExtensions.docker
     gnomeExtensions.top-bar-organizer
     gnomeExtensions.transparent-top-bar
     gnomeExtensions.move-clock
     gnomeExtensions.bluetooth-battery-meter
+    # docker containers and services
+    gnomeExtensions.docker
+    gnomeExtensions.containers
+    gnomeExtensions.sermon
     ### gnome apps
     gnome-bluetooth # bluetooth manager
     gnome-tweaks # customizing gnome
@@ -183,6 +186,9 @@
     unzip # zip and unzip (not same as gzip!)
     rar # utility for RAR archives
     docker
+    podman
+    podman-tui
+    podman-desktop
     docker-compose # containers to ship
     nvidia-container-toolkit # to build and run GPU accelerated containers.
     jp2a # jpeg to ASCII
@@ -196,6 +202,9 @@
     policycoreutils # security policy
     audit # for system log analysis
     pdftk # Command-line tool for working with PDFs
+    tor
+    tor-browser
+    onionshare-gui
 
 
     ########################## audio and DSPs ###########################
@@ -311,11 +320,19 @@
     lazygit # terminal UI for git commands
     gh # git user manager
     androidStudioPackages.canary
+    android-tools
+    android-studio-tools
     wxhexeditor # advanced HEX editor
     insomnia # API DevTest
     libvirt # toolkit to interact with the virtualization
     #virtualbox # GUI virtualizer
     qemu_full # machine emulator and CLI virtualizer
+    k9s # kube
+    k3s # kube
+    k3d # kube
+    stern # kube
+    jqp # kube
+    kubectx # kube
     #ciscoPacketTracer8
 
     #### RECORDING AND STREAMING ####
